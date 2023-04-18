@@ -7,10 +7,6 @@ const igAccountSchema = new Schema({
     type: String,
     required: true
   },
-  bio: {
-    type: String,
-    required: true
-  },
   followers: {
     type: String,
     required: true
@@ -24,6 +20,10 @@ const igAccountSchema = new Schema({
     required: true
   },
   image: {
+    type: String,
+    required: false
+  },
+  bio: {
     type: String,
     required: true
   },

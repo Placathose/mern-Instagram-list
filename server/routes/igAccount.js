@@ -1,29 +1,27 @@
 const express = require('express');
+const {
+  getAllAccounts,
+  getSingleAccount,
+  createAccount,
+  deleteAccount,
+  updateAccount
+} = require('../controllers/igAccountController')
 
 const router = express.Router();
 
 // GET all IG account
-router.get('/', (req, res) => {
-  res.json({message: 'GET all IG account'})
-});
+router.get('/', getAllAccounts);
 
 // GET a single IG account 
-router.get('/:id', (req, res) => {
-  res.json({message: 'Get a single IG account'})
-});
+router.get('/:id', getSingleAccount);
 
 // POST a new IG account
-router.post('/', (req, res) => {
-  res.json({message: 'Post a new IG account'})
-})
+router.post('/', createAccount);
+
 // DELETE an IG account
-router.delete('/:id', (req, res) => {
-  res.json({message: 'Delete an IG account'})
-})
+router.delete('/:id', deleteAccount)
 
 // UPDATE an IG account 
-router.patch('/:id', (req, res) => {
-  res.json({message: 'Update an IG account'})
-})
+router.patch('/:id', updateAccount)
 
 module.exports = router
