@@ -41,7 +41,19 @@ const createAccount = async (req, res) => {
 
 // Delete an account
 const deleteAccount = async (req, res) => {
+  const {id} = req.params;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'No such account' })
+  };
+
+  const account = await igAccountUser.findOneAndDelete({_id : id});
+
+  if(!account) {
+    return res.status(400).json({ error: 'No such account' })
+  }
+
+  res.status(200).json(workout)
 }
 
 // Update an account
