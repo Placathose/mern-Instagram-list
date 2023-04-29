@@ -1,4 +1,4 @@
-const igAccountUser = require('..models/igAccountModel');
+const igAccountUser = require('../models/igAccountModel');
 const mongoose = require('mongoose');
 
 // Get all ig Account
@@ -58,7 +58,21 @@ const deleteAccount = async (req, res) => {
 
 // Update an account
 const updateAccount = async (req, res) => {
+  const { id } = req.params;
 
+  if(!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'No such account' });
+  }
+
+  const account = await igAccountUser.findOneAndUpdate({ _id: id }, {
+    ...req.body
+  })
+
+  if(!igAccountUser) {
+    return res.status(400).json({ json: 'No such workout' })
+  }
+
+  res.status(200).json(igAccountUser)
 }
 
 module.exports = {
