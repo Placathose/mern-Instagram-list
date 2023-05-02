@@ -18,7 +18,7 @@ const getSingleAccount = async (req, res) => {
 
   const account = await igAccountUser.findById(id);
   
-  if(!workout) {
+  if(!account) {
     return res.status(404).json({error: 'No such account'})
   }
 
@@ -53,7 +53,7 @@ const deleteAccount = async (req, res) => {
     return res.status(400).json({ error: 'No such account' })
   }
 
-  res.status(200).json(workout)
+  res.status(200).json(account)
 }
 
 // Update an account
@@ -69,10 +69,10 @@ const updateAccount = async (req, res) => {
   })
 
   if(!igAccountUser) {
-    return res.status(400).json({ json: 'No such workout' })
+    return res.status(400).json({ json: 'No such account' })
   }
 
-  res.status(200).json(igAccountUser)
+  res.status(200).json(account)
 }
 
 module.exports = {
